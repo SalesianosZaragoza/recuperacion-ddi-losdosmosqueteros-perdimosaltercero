@@ -11,6 +11,12 @@ function App({ username }) {
   const [totalPrecio, setTotalPrecio] = useState(0);
   const [isReceiptVisible, setIsReceiptVisible] = useState(false);
 
+  const cardStyle = {
+    width: '18rem', 
+    minHeight: '20rem', 
+    objectFit: 'cover'
+  };
+
   const toggleReceipt = () => {
     setIsReceiptVisible(!isReceiptVisible);
   };
@@ -96,31 +102,41 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
         </Routes>
       </Router>
       <h1>¡Hola, {username}!</h1>
-    {sortedProductos.map((product, index) => {
+
+      <h2>Selecciona los productos que deseas comprar</h2>
+      <div className="container">
+  <div className="row">
+    {sortedProductos.flatMap((product, index) => {
       // If it's the first product or if the categoria has changed, add a title
       const title = index === 0 || product.categoria !== sortedProductos[index - 1].categoria
-        ? <h2 style={{ marginBottom: '50px' }}>{categoriaTitles[product.categoria]}</h2>
+        ? 
+            <h2 style={{ marginBottom: '50px' }}>{categoriaTitles[product.categoria]}</h2>
         : null;
-  
-          return (
-            <div key={product.cod} style={{ marginBottom: '20px' }}>
-              {title}
-              <div className="card" style={{width: "18rem"}}>
-                <img className="card-img-top" title={product.descripcion} src={process.env.PUBLIC_URL + '/images/' + product.foto} alt={product.nombre} />
-                <div className="card-body">
-                  <h5 className="card-title">{product.nombre}</h5>
-                  <p className="card-text">Precio: {product.precio} €</p>
-                  <input type="number" 
-                  className="form-control"
-                  name={`cantidad${product.cod}`} 
-                  id={`cantidad${product.cod}`} 
-                  placeholder='Cantidad'
-                  onChange={event => handleQuantityChange(product.cod, event)}/>
-                </div>
-              </div>
+      
+      return [
+        title,
+        <div key={product.cod} className="col-md-3" style={{ marginBottom: '20px' }}>
+          <div className="card" style={{ width: '18rem', minHeight: '20rem', objectFit: 'cover' }}>
+            <img className="card-img-top" title={product.descripcion} src={process.env.PUBLIC_URL + '/images/' + product.foto} alt={product.nombre} />
+            <div className="card-body">
+              <h5 className="card-title">{product.nombre}</h5>
+              <p className="card-text">Precio: {product.precio} €</p>
+              <input
+                type="number"
+                className="form-control"
+                name={`cantidad${product.cod}`}
+                id={`cantidad${product.cod}`}
+                placeholder='Cantidad'
+                onChange={event => handleQuantityChange(product.cod, event)}
+              />
             </div>
-          );
-        })}
+          </div>
+        </div>
+      ];
+    })}
+  </div>
+</div>
+
       <button onClick={handlePagar}>
         <img src="images/carrito.jpg" alt="Pagar" style={{ width: '200px', height: '200px' }} />
       </button>
