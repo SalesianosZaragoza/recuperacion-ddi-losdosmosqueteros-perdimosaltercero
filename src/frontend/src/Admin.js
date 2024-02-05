@@ -1,0 +1,408 @@
+import { useState, useEffect } from 'react';
+import React from 'react';
+
+function Admin() {
+const [productos, setProductos] = useState([]);
+const [pedidos, setPedidos] = useState([]);
+const [usuarios, setUsuarios] = useState([]);
+const [nuevoNombre, setNuevoNombre] = useState('');
+const [nuevoPrecio, setNuevoPrecio] = useState('');
+const [nuevaCantidad, setNuevaCantidad] = useState('');
+const [nuevaCategoria, setNuevaCategoria] = useState('');
+const [nuevaDescripcion, setNuevaDescripcion] = useState('');
+const [nuevaFoto, setNuevaFoto] = useState('');
+const [modNombre, setModNombre] = useState('');	
+const [modPrecio, setModPrecio] = useState('');
+const [modCantidad, setModCantidad] = useState('');
+const [modCategoria, setModCategoria] = useState('');
+const [modDescripcion, setModDescripcion] = useState('');
+const [modFoto, setModFoto] = useState('');
+const [selectedProduct, setSelectedProduct] = useState('');
+const [selectedProduct2, setSelectedProduct2] = useState('');
+const [selectedPedido2, setSelectedPedido2] = useState('');
+
+// Mapping of categoria to titles
+const tiposUsuario = {
+  1: 'Administrador',
+  2: 'Usuario normal'
+};
+
+const handleSelectChange = (event) => {
+  const selectedProductCod = event.target.value;
+  setSelectedProduct(selectedProductCod);
+  console.log(selectedProductCod);
+  const selectedProduct = productos.find((producto) => producto.cod === selectedProductCod);
+  console.log(selectedProduct);
+  if (selectedProduct) {
+    setModNombre(selectedProduct.nombre);
+    setModPrecio(selectedProduct.precio);
+    setModCantidad(selectedProduct.cantidad);
+    setModCategoria(selectedProduct.categoria);
+    setModDescripcion(selectedProduct.descripcion);
+    setModFoto(selectedProduct.foto);
+  }
+};
+
+// Ordenar usuarios por tipos
+const sortedUsuarios = [...usuarios].sort((a, b) => a.tipo_usuario - b.tipo_usuario);
+
+const handleSelectChange2 = (event) => {
+  setSelectedProduct2(event.target.value);
+};
+
+const handleSelectChange4 = (event) => {
+  setSelectedPedido2(event.target.value);
+};
+
+useEffect(() => {
+    fetch('/productos')
+      .then(response => response.json())
+      .then(data => {
+        // Add a quantity property to each product
+        const productosConCantidad = data.map(producto => ({ ...producto, cantidad: 0 }));
+        setProductos(productosConCantidad);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('/pedidos')
+      .then(response => response.json())
+      .then(data => {
+        const pedidos3 = data.map(pedido => ({ ...pedido}));
+        setPedidos(pedidos3);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('/usuarios')
+      .then(response => response.json())
+      .then(data => {
+        const usuarios = data.map(usuario => ({ ...usuario}));
+        setUsuarios(usuarios);
+      });
+  }, []);
+
+  const handleNuevoProducto = event => {
+    event.preventDefault();
+    
+    const productoNuevo = {
+      nombre: nuevoNombre,
+      precio: nuevoPrecio,
+      cantidad: nuevaCantidad,
+      categoria: nuevaCategoria,
+      descripcion: nuevaDescripcion,
+      foto: nuevaFoto
+    };
+    
+    // Send POST request to /insertarProducto
+    fetch('./insertarProducto', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productoNuevo),
+    })
+    .then(response => {
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        return response.text();
+    })
+    .then(data => {
+        console.log('Product created', data);
+      // Redirect to LoginPage
+
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+    };
+
+    const handleCambioProducto = event => {
+      event.preventDefault();
+      
+      const productoCambiado = {
+        nombre: modNombre,
+        precio: modPrecio,
+        cantidad: modCantidad,
+        categoria: modCategoria,
+        descripcion: modDescripcion,
+        foto: modFoto,
+        cod: selectedProduct
+      };
+      
+      // Send POST request to /cambiarProducto
+      fetch('./cambiarProducto', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(productoCambiado),
+      })
+      .then(response => {
+          if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          return response.text();
+      })
+      .then(data => {
+          console.log('Product modified', data);
+        // Redirect to LoginPage
+  
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+      };
+
+      const handleEliminarProducto = event => {
+        event.preventDefault();
+        
+        const productoEliminado = {
+
+          cod: selectedProduct2
+        };
+        
+        // Send POST request to /eliminarProducto
+        fetch('./eliminarProducto', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productoEliminado),
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            return response.text();
+        })
+        .then(data => {
+            console.log('Product deleted', data);
+          // Redirect to LoginPage
+    
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+        };
+
+        const handleEliminarPedido = event => {
+          event.preventDefault();
+          
+          const pedidoEliminado = {
+  
+            cod: selectedPedido2
+          };
+          
+          // Send POST request to /eliminarPedido
+          fetch('./eliminarPedido', {
+              method: 'POST',
+              headers: {
+              'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(pedidoEliminado),
+          })
+          .then(response => {
+              if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              
+              return response.text();
+          })
+          .then(data => {
+              console.log('Pedido deleted', data);
+            // Redirect to LoginPage
+      
+          })
+          .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+          });
+          };
+
+return (
+    <div style={{backgroundColor: 'beige'}}>
+        <h1>Crear productos</h1>
+        <form onSubmit={handleNuevoProducto}>
+        <input type="text" 
+          name="nuevoNombre"
+          id="nuevoNombre" 
+          placeholder='Nombre del producto'
+          onChange={e => setNuevoNombre(e.target.value)}
+          />
+          <br/>
+          <br/>
+        <input type="text" 
+          name="nuevoPrecio"
+          id="nuevoPrecio" 
+          placeholder='Precio del producto'
+          onChange={e => setNuevoPrecio(e.target.value)}
+          />
+          <br/>
+          <br/>
+        <input type="number" 
+          name="nuevaCantidad"
+          id="nuevaCantidad" 
+          placeholder='Cantidad del producto'
+          onChange={e => setNuevaCantidad(e.target.value)}
+          />
+          <br/>
+          <br/>
+          <input type="number" 
+          name="nuevaCategoria"
+          id="nuevaCategoria" 
+          placeholder='Categoria del producto'
+          onChange={e => setNuevaCategoria(e.target.value)}
+          />
+          <br/>
+          <br/>
+        <input type="text" 
+          name="nuevaDescripcion"
+          id="nuevaDescripcion" 
+          placeholder='Descripción del producto'
+          onChange={e => setNuevaDescripcion(e.target.value)}
+          />
+          <br/>
+          <br/>
+        <input type="text" 
+          name="nuevaFoto"
+          id="nuevaFoto" 
+          placeholder='Foto del producto (URL)'
+          onChange={e => setNuevaFoto(e.target.value)}
+          />
+          <br/>
+          <br/>
+          <button type="submit" class="btn btn-success">Crear producto</button>
+          </form>
+        <hr />
+        <h1>Modificar producto</h1>
+          <form onSubmit={handleCambioProducto}>
+            <select name="productos1" id="productos1" value={selectedProduct} onChange={handleSelectChange}>
+            <option value="0">Selecciona un producto</option>
+            {productos.map(product => (
+                <React.Fragment key={product.cod}>
+                    <option value={product.cod}>{product.nombre}</option>
+                </React.Fragment>
+            ))}
+            
+            </select>
+            <br/>
+            <br/>
+                    <input type="text" 
+                    name="modNombre"
+                    id="modNombre" 
+                    placeholder='Nombre del producto'
+                    value={modNombre}
+                    onChange={e => setModNombre(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <input type="text" 
+                    name="modPrecio"
+                    id="modPrecio" 
+                    placeholder='Precio del producto'
+                    value={modPrecio}
+                    onChange={e => setModPrecio(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <input type="number" 
+                    name="modCantidad"
+                    id="modCantidad" 
+                    placeholder='Cantidad del producto'
+                    value={modCantidad}
+                    onChange={e => setModCantidad(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <input type="number" 
+                    name="modCategoria"
+                    id="modCategoria" 
+                    placeholder='Categoria del producto'
+                    value={modCategoria}
+                    onChange={e => setModCategoria(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <input type="text" 
+                    name="modDescripcion"
+                    id="modDescripcion" 
+                    placeholder='Descripción del producto'
+                    value={modDescripcion}
+                    onChange={e => setModDescripcion(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <input type="text" 
+                    name="modFoto"
+                    id="modFoto" 
+                    placeholder='Foto del producto (URL)'
+                    value={modFoto}
+                    onChange={e => setModFoto(e.target.value)}
+                    />
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Modificar producto</button>
+                </form>
+        <hr />
+        <h1>Eliminar producto</h1>
+        <form onSubmit={handleEliminarProducto}>
+        <select name="productos2" id="productos2" value={selectedProduct2} onChange={handleSelectChange2}>
+        <option value="0">Selecciona un producto</option>
+            {productos.map(product => (
+                <React.Fragment key={product.cod}>
+                    <option value={product.cod}>{product.nombre}</option>
+                </React.Fragment>
+            ))}
+            </select>
+            <br/>
+            <br/>
+        <button type="submit" class="btn btn-danger">Eliminar producto</button>
+        </form>
+        <hr />
+        <h1>Lista de pedidos</h1>
+        {pedidos.map(pedido => (
+                <p>Usuario: {pedido.username} Productos: {pedido.productos} Importe: {pedido.total}€</p>
+            ))}
+        <hr />
+        <h1>Eliminar pedido</h1>
+        <form onSubmit={handleEliminarPedido}>
+        <select name="pedidos2" id="pedidos2" value={selectedPedido2} onChange={handleSelectChange4}>
+        <option value="0">Selecciona un pedido</option>
+            {pedidos.map(pedido => (
+                <React.Fragment key={pedido.cod}>
+                    <option value={pedido.cod}>Usuario: {pedido.username} Productos: {pedido.productos} Importe: {pedido.total}€</option>
+                </React.Fragment>
+            ))}
+            </select>
+            <br/>
+            <br/>
+        <button type="submit" class="btn btn-danger">Eliminar pedido</button>
+        </form>
+        <hr />
+        <h1>Lista de usuarios</h1>
+        {sortedUsuarios.map((usuario, index) => {
+            
+          const title = index === 0 || usuario.tipo_usuario !== sortedUsuarios[index - 1].tipo_usuario
+          ? <h2 style={{ marginBottom: '50px' }}>{tiposUsuario[usuario.tipo_usuario]}</h2>
+          : null;
+          return (
+            <div key={usuario.cod} style={{ marginBottom: '20px' }}>
+              {title}
+              <div className="card" style={{width: "18rem"}}>
+                <div className="card-body">
+                  <h5 className="card-title">{usuario.username}</h5>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        <hr />
+    </div>
+  );
+}
+
+export default Admin;
