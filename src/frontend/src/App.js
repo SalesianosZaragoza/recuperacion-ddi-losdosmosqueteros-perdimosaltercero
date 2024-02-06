@@ -135,7 +135,7 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
                 min="0"
                 onKeyPress={event => {
                   const inputValue = event.target.value;
-                  if ((event.key === '-') || (inputValue === '' && event.key === '0')) event.preventDefault();
+                  if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (inputValue === '' && event.key === '0')) event.preventDefault();
                 }}
                 onChange={event => handleQuantityChange(product.cod, event)}
               />
