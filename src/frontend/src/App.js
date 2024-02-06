@@ -11,11 +11,7 @@ function App({ username }) {
   const [totalPrecio, setTotalPrecio] = useState(0);
   const [isReceiptVisible, setIsReceiptVisible] = useState(false);
 
-  const cardStyle = {
-    width: '18rem', 
-    minHeight: '20rem', 
-    objectFit: 'cover'
-  };
+  
 
   const toggleReceipt = () => {
     setIsReceiptVisible(!isReceiptVisible);
@@ -48,6 +44,11 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
     const nombresProductos = productos
       .filter(producto => producto.cantidad > 0)
       .map(producto => producto.nombre);
+
+      if (totalPrecio === 0) {
+        alert('No products selected. Please select a product before proceeding to payment.');
+        return;
+      }
       
     fetch('./insertarPedido', {
       method: 'POST',
@@ -77,7 +78,11 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
   
   
   const handleQuantityChange = (id, event) => {
+    const quantity = event.target.value;
     const newQuantity = Number(event.target.value);
+    if (quantity < 0) {
+      return;
+    }
     setProductos(productos => productos.map(producto => {
       if (producto.cod === id) {
         return { ...producto, cantidad: newQuantity };
@@ -127,6 +132,11 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
                 name={`cantidad${product.cod}`}
                 id={`cantidad${product.cod}`}
                 placeholder='Cantidad'
+                min="0"
+                onKeyPress={event => {
+                  const inputValue = event.target.value;
+                  if ((event.key === '-') || (inputValue === '' && event.key === '0')) event.preventDefault();
+                }}
                 onChange={event => handleQuantityChange(product.cod, event)}
               />
             </div>
@@ -136,15 +146,16 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
     })}
   </div>
 </div>
-
-      <button onClick={handlePagar}>
-        <img src="images/carrito.jpg" alt="Pagar" style={{ width: '200px', height: '200px' }} />
-      </button>
+      <div id="zonaCompra" style={{  position: 'fixed', top: '10px', right: '10px'}}>
+        <button id="pagarButton" onClick={handlePagar}>
+          <img src="images/carrito.jpg" alt="Pagar" style={{ width: '135px', height: '135px' }} />
+        </button>
+        <p> Total: {totalPrecio} €</p>
+        <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
+      </div>
       <br/>
       <br/>
       <button onClick={toggleReceipt}>Mostrar/Ocultar Lista completa</button>
-      <p> Total: {totalPrecio}</p>
-      <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
       {isReceiptVisible && (
         <footer>
           <h3>Detalles del pedido</h3>
