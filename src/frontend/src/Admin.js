@@ -235,11 +235,20 @@ return (
           />
           <br/>
           <br/>
-        <input type="text" 
+        <input type="number" 
           name="nuevoPrecio"
           id="nuevoPrecio" 
           placeholder='Precio del producto'
-          onChange={e => setNuevoPrecio(e.target.value)}
+          min="0"
+          onKeyPress={event => {
+            if (event.key === '-') event.preventDefault();
+          }}
+          onChange={event => {
+            const newValue = event.target.value;
+            if (newValue >= 0) {
+              setNuevoPrecio(newValue);
+            }
+          }}
           />
           <br/>
           <br/>
@@ -247,7 +256,16 @@ return (
           name="nuevaCantidad"
           id="nuevaCantidad" 
           placeholder='Cantidad del producto'
-          onChange={e => setNuevaCantidad(e.target.value)}
+          min="0"
+          onKeyPress={event => {
+            if (event.key === '-') event.preventDefault();
+          }}
+          onChange={event => {
+            const newValue = event.target.value;
+            if (newValue >= 0) {
+              setNuevaCantidad(newValue);
+            }
+          }}
           />
           <br/>
           <br/>
@@ -255,7 +273,16 @@ return (
           name="nuevaCategoria"
           id="nuevaCategoria" 
           placeholder='Categoria del producto'
-          onChange={e => setNuevaCategoria(e.target.value)}
+          min="0"
+          onKeyPress={event => {
+            if (event.key === '-') event.preventDefault();
+          }}
+          onChange={event => {
+            const newValue = event.target.value;
+            if (newValue >= 0) {
+              setNuevaCategoria(newValue);
+            }
+          }}
           />
           <br/>
           <br/>
@@ -300,12 +327,21 @@ return (
                     />
                     <br/>
                     <br/>
-                    <input type="text" 
+                    <input type="number" 
                     name="modPrecio"
                     id="modPrecio" 
                     placeholder='Precio del producto'
                     value={modPrecio}
-                    onChange={e => setModPrecio(e.target.value)}
+                    min="0"
+                    onKeyPress={event => {
+                      if (event.key === '-') event.preventDefault();
+                    }}
+                    onChange={event => {
+                      const newValue = event.target.value;
+                      if (newValue >= 0) {
+                        setModPrecio(newValue);
+                      }
+                    }}
                     />
                     <br/>
                     <br/>
@@ -314,7 +350,16 @@ return (
                     id="modCantidad" 
                     placeholder='Cantidad del producto'
                     value={modCantidad}
-                    onChange={e => setModCantidad(e.target.value)}
+                    min="0"
+                    onKeyPress={event => {
+                      if (event.key === '-') event.preventDefault();
+                    }}
+                    onChange={event => {
+                      const newValue = event.target.value;
+                      if (newValue >= 0) {
+                        setModCantidad(newValue);
+                      }
+                    }}
                     />
                     <br/>
                     <br/>
@@ -323,7 +368,16 @@ return (
                     id="modCategoria" 
                     placeholder='Categoria del producto'
                     value={modCategoria}
-                    onChange={e => setModCategoria(e.target.value)}
+                    min="0"
+                    onKeyPress={event => {
+                      if (event.key === '-') event.preventDefault();
+                    }}
+                    onChange={event => {
+                      const newValue = event.target.value;
+                      if (newValue >= 0) {
+                        setModCategoria(newValue);
+                      }
+                    }}
                     />
                     <br/>
                     <br/>

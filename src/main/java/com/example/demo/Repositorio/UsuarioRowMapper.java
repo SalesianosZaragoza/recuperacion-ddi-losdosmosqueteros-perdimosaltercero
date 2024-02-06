@@ -9,7 +9,7 @@ import com.example.demo.Modelos.Usuario;
 public class UsuarioRowMapper implements RowMapper<Usuario> {
 
     @Override
-    public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public Usuario mapRow(@SuppressWarnings("null")ResultSet rs, int rowNum) throws SQLException {
         Usuario usuario = new Usuario();
         usuario.setCod(rs.getInt("cod"));
         usuario.setUsername(rs.getString("username"));
