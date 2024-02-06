@@ -241,7 +241,7 @@ return (
           placeholder='Precio del producto'
           min="0"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
@@ -258,7 +258,7 @@ return (
           placeholder='Cantidad del producto'
           min="0"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
@@ -275,7 +275,7 @@ return (
           placeholder='Categoria del producto'
           min="0"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
@@ -334,7 +334,7 @@ return (
                     value={modPrecio}
                     min="0"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
@@ -352,7 +352,7 @@ return (
                     value={modCantidad}
                     min="0"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
@@ -370,7 +370,7 @@ return (
                     value={modCategoria}
                     min="0"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
