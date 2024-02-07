@@ -35,6 +35,7 @@ function NewUser() {
         .then(data => {
             console.log('User created', data);
           // Redirect to LoginPage
+        
             return <LoginPage />;
         })
         .catch(error => {
@@ -62,7 +63,10 @@ function NewUser() {
             </label>
             <br />
             <br />
-            <input type="submit" class="btn btn-success" value="Registrar usuario" />
+            <input type="submit" class="btn btn-success" value="Registrar usuario" onClick={() => {
+                alert("Usuario creado correctamente.");
+            window.location.reload();
+            }}/>
         </form>
     </div>
     );

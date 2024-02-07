@@ -20,9 +20,9 @@ function App({ username }) {
 // Mapping of categoria to titles
 const categoriaTitles = {
   1: 'Bocadillos',
-  2: 'Cafe',
-  3: 'Bolleria',
-  4: 'Snacks',
+  2: 'Café',
+  3: 'Bollería',
+  4: 'Aperitivos',
   5: 'Bebidas',
   6: 'Otros',
 };
@@ -71,6 +71,7 @@ useEffect(() => {
     .then(data => {
       console.log('Order created', data);
       // Clear the cart
+      alert("Pedido realizado correctamente." + "Precio total: " + totalPrecio + " €.");
       setProductos(productos.map(producto => ({ ...producto, cantidad: 0 })));
       setTotalPrecio(0);
     })

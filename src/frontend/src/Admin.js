@@ -27,19 +27,29 @@ const tiposUsuario = {
   2: 'Usuario normal'
 };
 
+// Mapping of categoria to titles
+const categoriaTitles = {
+  1: 'Bocadillos',
+  2: 'Cafe',
+  3: 'Bolleria',
+  4: 'Snacks',
+  5: 'Bebidas',
+  6: 'Otros',
+};
+
 const handleSelectChange = (event) => {
   const selectedProductCod = event.target.value;
   setSelectedProduct(selectedProductCod);
   console.log(selectedProductCod);
-  const selectedProduct = productos.find((producto) => producto.cod === selectedProductCod);
-  console.log(selectedProduct);
-  if (selectedProduct) {
-    setModNombre(selectedProduct.nombre);
-    setModPrecio(selectedProduct.precio);
-    setModCantidad(selectedProduct.cantidad);
-    setModCategoria(selectedProduct.categoria);
-    setModDescripcion(selectedProduct.descripcion);
-    setModFoto(selectedProduct.foto);
+  const selectedProduct = productos.find((producto) => producto === selectedProductCod);
+  console.log(productos[selectedProductCod]);
+  if (selectedProductCod) {
+    setModNombre(productos[selectedProductCod].nombre);
+    setModPrecio(productos[selectedProductCod].precio);
+    setModCantidad(productos[selectedProductCod].cantidad);
+    setModCategoria(productos[selectedProductCod].categoria);
+    setModDescripcion(productos[selectedProductCod].descripcion);
+    setModFoto(productos[selectedProductCod].foto);
   }
 };
 
@@ -49,6 +59,8 @@ const sortedUsuarios = [...usuarios].sort((a, b) => a.tipo_usuario - b.tipo_usua
 const handleSelectChange2 = (event) => {
   setSelectedProduct2(event.target.value);
 };
+
+
 
 const handleSelectChange4 = (event) => {
   setSelectedPedido2(event.target.value);
@@ -277,21 +289,18 @@ return (
           />
           <br/>
           <br/>
-          <input type="number" 
-          name="nuevaCategoria"
-          id="nuevaCategoria" 
-          placeholder='Categoria del producto'
-          min="0"
-          onKeyPress={event => {
-            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
-          }}
-          onChange={event => {
-            const newValue = event.target.value;
-            if (newValue >= 0) {
-              setNuevaCategoria(newValue);
-            }
-          }}
-          />
+          <select name="nuevaCategoria" id="nuevaCategoria" value={nuevaCategoria} onChange={e => setNuevaCategoria(e.target.value)}>
+                  <option value="0">Selecciona una categoría</option>
+                    <option value="1">Bocadillos</option>
+                    <option value="2">Café</option>
+                    <option value="3">Bollería</option>
+                    <option value="4">Aperitivos</option>
+                    <option value="5">Bebidas</option>
+                    <option value="6">Otros</option>
+
+
+            
+            </select>
           <br/>
           <br/>
         <input type="text" 
@@ -341,8 +350,10 @@ return (
                       placeholder='Precio del producto'
                       min="0.01"
                       step="0.01"
+                      value={modPrecio}
                       onKeyPress={event => {
                         const inputValue = event.target.value;
+                        
                         if (
                           (event.key === '-') || 
                           (event.key === '+') || 
@@ -353,6 +364,7 @@ return (
                       }}
                       onChange={event => {
                         const newValue = parseFloat(event.target.value);
+                        console.log(newValue);
                         if (newValue > 0) {
                           setModPrecio(newValue);
                         }
@@ -360,10 +372,12 @@ return (
                     />
                     <br/>
                     <br/>
+
                     <input type="number" 
                     name="modCantidad"
                     id="modCantidad" 
                     placeholder='Cantidad del producto'
+                    required
                     value={modCantidad}
                     min="0"
                     onKeyPress={event => {
@@ -378,7 +392,7 @@ return (
                     />
                     <br/>
                     <br/>
-                    <input type="number" 
+                    {/* <input type="number" 
                     name="modCategoria"
                     id="modCategoria" 
                     placeholder='Categoria del producto'
@@ -393,13 +407,26 @@ return (
                         setModCategoria(newValue);
                       }
                     }}
-                    />
+                    /> */}
+             <select name="modCategoria" id="modCategoria" value={modCategoria} onChange={e => setModCategoria(e.target.value)}>
+                  <option value="0">Selecciona una categoría</option>
+                    <option value="1">Bocadillos</option>
+                    <option value="2">Café</option>
+                    <option value="3">Bollería</option>
+                    <option value="4">Aperitivos</option>
+                    <option value="5">Bebidas</option>
+                    <option value="6">Otros</option>
+
+
+            
+            </select>
                     <br/>
                     <br/>
                     <input type="text" 
                     name="modDescripcion"
                     id="modDescripcion" 
                     placeholder='Descripción del producto'
+                    required
                     value={modDescripcion}
                     onChange={e => setModDescripcion(e.target.value)}
                     />
@@ -409,6 +436,7 @@ return (
                     name="modFoto"
                     id="modFoto" 
                     placeholder='Foto del producto (URL)'
+                    required
                     value={modFoto}
                     onChange={e => setModFoto(e.target.value)}
                     />
