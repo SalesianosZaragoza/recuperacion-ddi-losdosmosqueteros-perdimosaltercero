@@ -23,8 +23,8 @@ public class PedidoRepositorio{
     }
     
     public void save(Pedido pedido) {
-        String query = "INSERT INTO pedidos (username, productos, total) VALUES (?, ?, ?);";
-        jdbcTemplate.update(query, pedido.getUsername(), pedido.getProductos(), pedido.getTotal());
+        String query = "INSERT INTO pedidos (username, productos, producto_cantidad, total) VALUES (?, ?, ?, ?);";
+        jdbcTemplate.update(query, pedido.getUsername(), pedido.getProductos(), pedido.getProducto_cantidad(), pedido.getTotal());
     }
 
         public void eliminarPedido(Pedido pedido){

@@ -239,13 +239,13 @@ return (
           name="nuevoPrecio"
           id="nuevoPrecio" 
           placeholder='Precio del producto'
-          min="0"
+          min="1"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
-            if (newValue >= 0) {
+            if (newValue > 0) {
               setNuevoPrecio(newValue);
             }
           }}
@@ -258,7 +258,7 @@ return (
           placeholder='Cantidad del producto'
           min="0"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
@@ -275,7 +275,7 @@ return (
           placeholder='Categoria del producto'
           min="0"
           onKeyPress={event => {
-            if (event.key === '-') event.preventDefault();
+            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
           onChange={event => {
             const newValue = event.target.value;
@@ -332,13 +332,13 @@ return (
                     id="modPrecio" 
                     placeholder='Precio del producto'
                     value={modPrecio}
-                    min="0"
+                    min="1"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
-                      if (newValue >= 0) {
+                      if (newValue > 0) {
                         setModPrecio(newValue);
                       }
                     }}
@@ -352,7 +352,7 @@ return (
                     value={modCantidad}
                     min="0"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
@@ -370,7 +370,7 @@ return (
                     value={modCategoria}
                     min="0"
                     onKeyPress={event => {
-                      if (event.key === '-') event.preventDefault();
+                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
                     onChange={event => {
                       const newValue = event.target.value;
@@ -419,7 +419,7 @@ return (
         <hr />
         <h1>Lista de pedidos</h1>
         {pedidos.map(pedido => (
-                <p>Usuario: {pedido.username} Productos: {pedido.productos} Importe: {pedido.total}€</p>
+                <p>Usuario: {pedido.username} Productos: {pedido.productos} Cantidad Productos: {pedido.producto_cantidad} Importe: {pedido.total}€</p>
             ))}
         <hr />
         <h1>Eliminar pedido</h1>

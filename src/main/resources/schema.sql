@@ -19,5 +19,6 @@ CREATE TABLE pedidos (
     cod INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(800),
     productos VARCHAR(1600),
+    producto_cantidad VARCHAR(1600),
     total INT
 );
