@@ -45,6 +45,10 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
       .filter(producto => producto.cantidad > 0)
       .map(producto => producto.nombre);
 
+      const totalProductos = productos
+      .filter(producto => producto.cantidad > 0)
+      .map(producto => producto.cantidad);
+
       if (totalPrecio === 0) {
         alert('No products selected. Please select a product before proceeding to payment.');
         return;
@@ -55,7 +59,7 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({username: username, productos: nombresProductos, total: totalPrecio}),
+      body: JSON.stringify({username: username, productos: nombresProductos, producto_cantidad: totalProductos, total: totalPrecio}),
     })
     .then(response => {
       console.log(response.body);
@@ -99,13 +103,6 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
 
   return (
     <div style={{backgroundColor: 'beige'}}>
-      <Router>
-        <Routes> {/* Use Routes instead of Switch */}
-          <Route path="/login" element={<LoginPage />} /> {/* Use element prop */}
-          <Route path="/new-user" element={<NewUser />} /> {/* Use element prop */}
-          {/* Add more Routes as needed */}
-        </Routes>
-      </Router>
       <h1>¡Hola, {username}!</h1>
 
       <h2>Selecciona los productos que deseas comprar</h2>

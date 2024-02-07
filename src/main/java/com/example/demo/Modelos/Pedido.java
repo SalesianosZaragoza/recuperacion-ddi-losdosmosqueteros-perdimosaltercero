@@ -4,6 +4,7 @@ public class Pedido {
     private int cod;
     private String username;
     private Object[] productos;
+    private Object[] producto_cantidad;
     private int total;
 
 
@@ -70,6 +71,24 @@ public class Pedido {
      */
     public void setCod(int cod) {
         this.cod = cod;
+    }
+
+
+
+
+
+    /**
+     * @return Object[] return the producto_cantidad
+     */
+    public Object[] getProducto_cantidad() {
+        return producto_cantidad;
+    }
+
+    /**
+     * @param producto_cantidad the producto_cantidad to set
+     */
+    public void setProducto_cantidad(Object[] producto_cantidad) {
+        this.producto_cantidad = producto_cantidad;
     }
 
 }
