@@ -3,13 +3,13 @@ package com.example.demo.Modelos;
 public class Producto {
     private int cod;
     private String nombre;
-    private int precio; 
+    private double precio; 
     private int cantidad;
     private int categoria;
     private String descripcion;
     private String foto;
 
-    public Producto(String nombre, int precio, int cantidad, int categoria, String descripcion, String foto){
+    public Producto(String nombre, double precio, int cantidad, int categoria, String descripcion, String foto){
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -50,16 +50,16 @@ public class Producto {
     }
 
     /**
-     * @return int return the precio
+     * @return double return the precio
      */
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
     /**
      * @param precio the precio to set
      */
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

@@ -235,20 +235,28 @@ return (
           />
           <br/>
           <br/>
-        <input type="number" 
-          name="nuevoPrecio"
-          id="nuevoPrecio" 
-          placeholder='Precio del producto'
-          min="1"
-          onKeyPress={event => {
-            if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
-          }}
-          onChange={event => {
-            const newValue = event.target.value;
-            if (newValue > 0) {
-              setNuevoPrecio(newValue);
-            }
-          }}
+          <input type="number" 
+            name="nuevoPrecio"
+            id="nuevoPrecio" 
+            placeholder='Precio del producto'
+            min="0.01"
+            step="0.01"
+            onKeyPress={event => {
+              const inputValue = event.target.value;
+              if (
+                (event.key === '-') || 
+                (event.key === '+') || 
+                (event.key === 'e') || 
+                (event.key=== 'E') || 
+                (event.key === '.' && inputValue.includes('.'))
+              ) event.preventDefault();
+            }}
+            onChange={event => {
+              const newValue = parseFloat(event.target.value);
+              if (newValue > 0) {
+                setNuevoPrecio(newValue);
+              }
+            }}
           />
           <br/>
           <br/>
@@ -328,20 +336,27 @@ return (
                     <br/>
                     <br/>
                     <input type="number" 
-                    name="modPrecio"
-                    id="modPrecio" 
-                    placeholder='Precio del producto'
-                    value={modPrecio}
-                    min="1"
-                    onKeyPress={event => {
-                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
-                    }}
-                    onChange={event => {
-                      const newValue = event.target.value;
-                      if (newValue > 0) {
-                        setModPrecio(newValue);
-                      }
-                    }}
+                      name="modPrecio"
+                      id="modPrecio" 
+                      placeholder='Precio del producto'
+                      min="0.01"
+                      step="0.01"
+                      onKeyPress={event => {
+                        const inputValue = event.target.value;
+                        if (
+                          (event.key === '-') || 
+                          (event.key === '+') || 
+                          (event.key === 'e') || 
+                          (event.key=== 'E') || 
+                          (event.key === '.' && inputValue.includes('.'))
+                        ) event.preventDefault();
+                      }}
+                      onChange={event => {
+                        const newValue = parseFloat(event.target.value);
+                        if (newValue > 0) {
+                          setModPrecio(newValue);
+                        }
+                      }}
                     />
                     <br/>
                     <br/>

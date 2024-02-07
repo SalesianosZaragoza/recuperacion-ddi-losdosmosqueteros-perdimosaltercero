@@ -46,5 +46,10 @@ public class UsuarioRepositorio{
         String query = "INSERT INTO usuario (username, pwd, tipousuario) VALUES (?, ?, ?);";
         jdbcTemplate.update(query, usuario.getUsername(), usuario.getPwd(), usuario.getTipo_usuario());
     }
+
+    public void eliminarUsuario(Usuario usuario) {
+        String query = "DELETE FROM usuario u WHERE u.cod = ?";
+        jdbcTemplate.update(query, usuario.getCod());
+    }
 }
 

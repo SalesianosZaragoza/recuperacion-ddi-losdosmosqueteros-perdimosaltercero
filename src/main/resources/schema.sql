@@ -1,7 +1,7 @@
 CREATE TABLE Producto (
     cod INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255),
-    precio INT,
+    precio DECIMAL(10,2),
     cantidad INT,
     categoria INT,
     descripcion VARCHAR(255),
@@ -20,5 +20,5 @@ CREATE TABLE pedidos (
     username VARCHAR(800),
     productos VARCHAR(1600),
     producto_cantidad VARCHAR(1600),
-    total INT
+    total DECIMAL(10,2)
 );
