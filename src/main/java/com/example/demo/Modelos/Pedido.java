@@ -5,7 +5,7 @@ public class Pedido {
     private String username;
     private Object[] productos;
     private Object[] producto_cantidad;
-    private int total;
+    private double total;
 
 
 
@@ -29,16 +29,16 @@ public class Pedido {
 
 
     /**
-     * @return int return the total
+     * @return double return the total
      */
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
     /**
      * @param total the total to set
      */
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

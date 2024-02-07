@@ -21,6 +21,13 @@ public class UsuarioController {
         usuarioRepositorio.save(usuario);
         return "insertarUsuario";
     }
+
+    @PostMapping(value = "/eliminarUsuario", consumes = {"application/json"})
+    public String eliminarUsuario(@RequestBody Usuario usuario){
+        usuarioRepositorio.eliminarUsuario(usuario);
+        return "eliminarUsuario";
+    }
+
     
 
 }

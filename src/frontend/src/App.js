@@ -30,15 +30,15 @@ const categoriaTitles = {
 // Sort productos by categoria
 const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria);
 
-  useEffect(() => {
-    fetch('./productos')
-      .then(response => response.json())
-      .then(data => {
-        // Add a quantity property to each product
-        const productosConCantidad = data.map(producto => ({ ...producto, cantidad: 0 }));
-        setProductos(productosConCantidad);
-      });
-  }, []);
+useEffect(() => {
+  fetch('./productos')
+    .then(response => response.json())
+    .then(data => {
+      // Parse the prices as floating-point numbers and add a quantity property to each product
+      const productosConCantidad = data.map(producto => ({ ...producto, precio: parseFloat(producto.precio), cantidad: 0 }));
+      setProductos(productosConCantidad);
+    });
+}, []);
 
   const handlePagar = () => {
     const nombresProductos = productos
@@ -82,14 +82,13 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
   
   
   const handleQuantityChange = (id, event) => {
-    const quantity = event.target.value;
-    const newQuantity = Number(event.target.value);
+    const quantity = parseFloat(event.target.value); // Change this line
     if (quantity < 0) {
       return;
     }
     setProductos(productos => productos.map(producto => {
       if (producto.cod === id) {
-        return { ...producto, cantidad: newQuantity };
+        return { ...producto, cantidad: quantity }; // And this line
       } else {
         return producto;
       }
@@ -98,7 +97,7 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
 
   useEffect(() => {
     const newTotal = productos.reduce((sum, producto) => sum + producto.cantidad * producto.precio, 0);
-    setTotalPrecio(newTotal);
+    setTotalPrecio(parseFloat(newTotal.toFixed(2)));
   }, [productos]);
 
   return (
@@ -122,7 +121,7 @@ const sortedProductos = [...productos].sort((a, b) => a.categoria - b.categoria)
             <img className="card-img-top" title={product.descripcion} src={process.env.PUBLIC_URL + '/images/' + product.foto} alt={product.nombre} />
             <div className="card-body">
               <h5 className="card-title">{product.nombre}</h5>
-              <p className="card-text">Precio: {product.precio} €</p>
+              <p className="card-text">Precio: {product.precio.toFixed(2)} €</p>
               <input
                 type="number"
                 className="form-control"

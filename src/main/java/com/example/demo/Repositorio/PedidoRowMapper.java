@@ -15,7 +15,7 @@ public class PedidoRowMapper implements RowMapper<Pedido> {
         pedido.setUsername(rs.getString("username"));
         pedido.setProductos(new Object[]{rs.getString("productos")});
         pedido.setProducto_cantidad(new Object[]{rs.getString("producto_cantidad")});
-        pedido.setTotal(rs.getInt("total"));
+        pedido.setTotal(rs.getDouble("total"));
         return pedido;
     }
 }
