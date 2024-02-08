@@ -458,7 +458,7 @@ return (
         <h1>Eliminar producto</h1>
         <form onSubmit={handleEliminarProducto}>
         <select name="productos2" id="productos2" value={selectedProduct2} onChange={handleSelectChange2}>
-        <option value="0">Selecciona un producto</option>
+        <option value="0" disabled>Selecciona un producto</option>
             {productos.map(product => (
                 <React.Fragment key={product.cod}>
                     <option value={product.cod}>{product.nombre}</option>
@@ -478,7 +478,7 @@ return (
         <h1>Eliminar pedido</h1>
         <form onSubmit={handleEliminarPedido}>
         <select name="pedidos2" id="pedidos2" value={selectedPedido2} onChange={handleSelectChange4}>
-        <option value="0">Selecciona un pedido</option>
+        <option value="0" disabled>Selecciona un pedido</option>
             {pedidos.map(pedido => (
                 <React.Fragment key={pedido.cod}>
                     <option value={pedido.cod}>Usuario: {pedido.username} Productos: {pedido.productos} Importe: {pedido.total}€</option>
