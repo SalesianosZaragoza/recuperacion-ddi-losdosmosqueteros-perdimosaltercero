@@ -342,7 +342,7 @@ return (
         <br/>
           <form onSubmit={handleCambioProducto}>
             <select name="productos1" id="productos1" value={selectedProduct} onChange={handleSelectChange}>
-            <option value="0">Selecciona un producto</option>
+            <option value="0" disabled>Selecciona un producto</option>
             {productos.map(product => (
                 <React.Fragment key={product.cod}>
                     <option value={product.cod}>{product.nombre}</option>
