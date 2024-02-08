@@ -38,18 +38,18 @@ const categoriaTitles = {
 };
 
 const handleSelectChange = (event) => {
-  const selectedProductCod = event.target.value;
+  const selectedProductCod = Number(event.target.value);
   setSelectedProduct(selectedProductCod);
   console.log(selectedProductCod);
-  const selectedProduct = productos.find((producto) => producto === selectedProductCod);
-  console.log(productos[selectedProductCod]);
-  if (selectedProductCod) {
-    setModNombre(productos[selectedProductCod].nombre);
-    setModPrecio(productos[selectedProductCod].precio);
-    setModCantidad(productos[selectedProductCod].cantidad);
-    setModCategoria(productos[selectedProductCod].categoria);
-    setModDescripcion(productos[selectedProductCod].descripcion);
-    setModFoto(productos[selectedProductCod].foto);
+  const selectedProduct = productos.find((producto) => producto.cod === selectedProductCod);
+  console.log(selectedProduct);
+  if (selectedProduct) {
+    setModNombre(selectedProduct.nombre);
+    setModPrecio(selectedProduct.precio);
+    setModCantidad(selectedProduct.cantidad);
+    setModCategoria(selectedProduct.categoria);
+    setModDescripcion(selectedProduct.descripcion);
+    setModFoto(selectedProduct.foto);
   }
 };
 
