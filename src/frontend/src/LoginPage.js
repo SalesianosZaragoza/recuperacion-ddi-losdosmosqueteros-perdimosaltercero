@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import App from "./App";
 import Admin from "./Admin";
+import logo from './logo.svg';
+import './App.css';
+
 import NewUser from "./NewUser";
 
 function LoginPage() {
@@ -58,42 +61,45 @@ function LoginPage() {
     return <NewUser />; // Render NewUser component if isRegistering is true
   } else {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'beige' }}>
-        
-        <form onSubmit={handleSubmit} style={{backgroundColor: 'white'}}>
-        <label><h1>Iniciar sesión</h1></label>
-        <br/>
-          <label>
-            Usuario:
-            <br/>
-            <input
-              type="text"
-              value={username}
-              placeholder="Usuario"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <br/>
-          <br/>
-          <label>
-            Contraseña:
-            <br/>
-            <input
-              type="password"
-              value={pwd}
-              placeholder="Contraseña"
-              onChange={(e) => setPwd(e.target.value)}
-            />
-          </label>
-          <br/>
-          <br/>
-          <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
-          <br/>
-          <br/>
-          <input type="button" class="btn btn-success" value="Registrarse" onClick={handleRegister} />
-        </form>
-        <br/>
-        
+      <div className="App">
+          <img src={logo} className="App-logo" alt="logo" />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'beige' }}>
+              
+              <form onSubmit={handleSubmit} style={{backgroundColor: 'white'}}>
+              <label><h1>Iniciar sesión</h1></label>
+              <br/>
+                <label>
+                  Usuario:
+                  <br/>
+                  <input
+                    type="text"
+                    value={username}
+                    placeholder="Usuario"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </label>
+                <br/>
+                <br/>
+                <label>
+                  Contraseña:
+                  <br/>
+                  <input
+                    type="password"
+                    value={pwd}
+                    placeholder="Contraseña"
+                    onChange={(e) => setPwd(e.target.value)}
+                  />
+                </label>
+                <br/>
+                <br/>
+                <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
+                <br/>
+                <br/>
+                <input type="button" class="btn btn-success" value="Registrarse" onClick={handleRegister} />
+              </form>
+              <br/>
+              
+            </div>
       </div>
     );
   }

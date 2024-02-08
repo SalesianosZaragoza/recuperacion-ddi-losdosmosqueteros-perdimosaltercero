@@ -3,7 +3,10 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin; /* Adjust this to change the size of the logo */
+  position: absolute;
+  top: 30px;
+  right: 30px;
   pointer-events: none;
 }
 

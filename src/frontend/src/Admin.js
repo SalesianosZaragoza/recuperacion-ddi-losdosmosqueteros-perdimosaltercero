@@ -239,14 +239,19 @@ return (
     <div style={{backgroundColor: 'beige'}}>
         <h1>Crear productos</h1>
         <form onSubmit={handleNuevoProducto}>
+        <label>Nombre del producto:</label>
+        <br/>
         <input type="text" 
           name="nuevoNombre"
           id="nuevoNombre" 
           placeholder='Nombre del producto'
           onChange={e => setNuevoNombre(e.target.value)}
+          required
           />
           <br/>
           <br/>
+        <label>Precio del producto:</label>
+        <br/>
           <input type="number" 
             name="nuevoPrecio"
             id="nuevoPrecio" 
@@ -272,6 +277,8 @@ return (
           />
           <br/>
           <br/>
+        <label>Cantidad del producto:</label>
+        <br/>
         <input type="number" 
           name="nuevaCantidad"
           id="nuevaCantidad" 
@@ -289,8 +296,10 @@ return (
           />
           <br/>
           <br/>
+          <label>Categoría del producto:</label>
+          <br/>
           <select name="nuevaCategoria" id="nuevaCategoria" value={nuevaCategoria} onChange={e => setNuevaCategoria(e.target.value)}>
-                  <option value="0">Selecciona una categoría</option>
+                  <option value="0" disabled>Selecciona una categoría</option>
                     <option value="1">Bocadillos</option>
                     <option value="2">Café</option>
                     <option value="3">Bollería</option>
@@ -303,14 +312,19 @@ return (
             </select>
           <br/>
           <br/>
+        <label>Descripción del producto:</label>
+        <br/>
         <input type="text" 
           name="nuevaDescripcion"
           id="nuevaDescripcion" 
           placeholder='Descripción del producto'
           onChange={e => setNuevaDescripcion(e.target.value)}
+          required
           />
           <br/>
           <br/>
+        <label>Foto del producto:</label>
+        <br/>
         <input type="text" 
           name="nuevaFoto"
           id="nuevaFoto" 
@@ -323,6 +337,9 @@ return (
           </form>
         <hr />
         <h1>Modificar producto</h1>
+        <br/>
+        <label>Selecciona un producto:</label>
+        <br/>
           <form onSubmit={handleCambioProducto}>
             <select name="productos1" id="productos1" value={selectedProduct} onChange={handleSelectChange}>
             <option value="0">Selecciona un producto</option>
@@ -335,14 +352,19 @@ return (
             </select>
             <br/>
             <br/>
+            <label>Nombre del producto:</label>
+                    <br/>
                     <input type="text" 
                     name="modNombre"
                     id="modNombre" 
                     placeholder='Nombre del producto'
                     value={modNombre}
                     onChange={e => setModNombre(e.target.value)}
+                    required
                     />
                     <br/>
+                    <br/>
+                    <label>Precio del producto:</label>
                     <br/>
                     <input type="number" 
                       name="modPrecio"
@@ -372,7 +394,8 @@ return (
                     />
                     <br/>
                     <br/>
-
+                    <label>Cantidad del producto:</label>
+                    <br/>
                     <input type="number" 
                     name="modCantidad"
                     id="modCantidad" 
@@ -392,35 +415,20 @@ return (
                     />
                     <br/>
                     <br/>
-                    {/* <input type="number" 
-                    name="modCategoria"
-                    id="modCategoria" 
-                    placeholder='Categoria del producto'
-                    value={modCategoria}
-                    min="0"
-                    onKeyPress={event => {
-                      if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
-                    }}
-                    onChange={event => {
-                      const newValue = event.target.value;
-                      if (newValue >= 0) {
-                        setModCategoria(newValue);
-                      }
-                    }}
-                    /> */}
-             <select name="modCategoria" id="modCategoria" value={modCategoria} onChange={e => setModCategoria(e.target.value)}>
-                  <option value="0">Selecciona una categoría</option>
-                    <option value="1">Bocadillos</option>
-                    <option value="2">Café</option>
-                    <option value="3">Bollería</option>
-                    <option value="4">Aperitivos</option>
-                    <option value="5">Bebidas</option>
-                    <option value="6">Otros</option>
-
-
-            
-            </select>
+                    <label>Categoría del producto:</label>
                     <br/>
+                    <select name="modCategoria" id="modCategoria" value={modCategoria} onChange={e => setModCategoria(e.target.value)}>
+                      <option value="0" disabled>Selecciona una categoría</option>
+                      <option value="1">Bocadillos</option>
+                      <option value="2">Café</option>
+                      <option value="3">Bollería</option>
+                      <option value="4">Aperitivos</option>
+                      <option value="5">Bebidas</option>
+                      <option value="6">Otros</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <label>Descripción del producto:</label>
                     <br/>
                     <input type="text" 
                     name="modDescripcion"
@@ -431,6 +439,8 @@ return (
                     onChange={e => setModDescripcion(e.target.value)}
                     />
                     <br/>
+                    <br/>
+                    <label>Foto del producto:</label>
                     <br/>
                     <input type="text" 
                     name="modFoto"
