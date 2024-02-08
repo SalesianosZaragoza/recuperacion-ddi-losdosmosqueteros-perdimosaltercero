@@ -105,9 +105,10 @@ useEffect(() => {
 
   return (
     <div style={{backgroundColor: 'beige'}}>
-      <h1>¡Hola, {username}!</h1>
-
-      <h2>Selecciona los productos que deseas comprar</h2>
+      <div style={{ textAlign: 'center' }}>
+        <h1>¡Hola, {username}!</h1>
+        <h2>Selecciona los productos que deseas comprar</h2>
+      </div>
       <div className="container">
   <div className="row">
     {sortedProductos.flatMap((product, index) => {
@@ -134,7 +135,7 @@ useEffect(() => {
                 min="0"
                 onKeyPress={event => {
                   const inputValue = event.target.value;
-                  if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (inputValue === '' && event.key === '0')) event.preventDefault();
+                  if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (event.key === '.') || (event.key === ',') || (inputValue === '' && event.key === '0')) event.preventDefault();
                 }}
                 onChange={event => handleQuantityChange(product.cod, event)}
               />
@@ -151,6 +152,13 @@ useEffect(() => {
         </button>
         <p> Total: {totalPrecio} €</p>
         <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
+      </div>
+      <div id="salesianoszgz" style={{ position: 'fixed', top: '0px', left: '0px' }}>
+        <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
+          <button id="salesianosButton">
+            <img src="images/salesianoszgz.jpg" alt="Salesianos"/>
+          </button>
+        </a>
       </div>
       <br/>
       <br/>

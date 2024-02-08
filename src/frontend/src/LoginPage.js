@@ -98,7 +98,13 @@ function LoginPage() {
                 <input type="button" class="btn btn-success" value="Registrarse" onClick={handleRegister} />
               </form>
               <br/>
-              
+            </div>
+            <div id="salesianoszgz" style={{ position: 'fixed', top: '0px', left: '0px' }}>
+              <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
+                <button id="salesianosButton">
+                  <img src="images/salesianoszgz.jpg" alt="Salesianos"/>
+                </button>
+              </a>
             </div>
       </div>
     );
