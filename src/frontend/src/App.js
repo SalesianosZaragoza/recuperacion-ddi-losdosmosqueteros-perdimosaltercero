@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage'; // Import LoginPage
 import NewUser from './NewUser'; // Import NewUser
 
+
 import './App.css';
 
 
@@ -74,6 +75,7 @@ useEffect(() => {
       alert("Pedido realizado correctamente." + "Precio total: " + totalPrecio + " €.");
       setProductos(productos.map(producto => ({ ...producto, cantidad: 0 })));
       setTotalPrecio(0);
+
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
@@ -119,7 +121,7 @@ useEffect(() => {
         title,
         <div key={product.cod} className="col-md-3" style={{ marginBottom: '20px' }}>
           <div className="card" style={{ width: '18rem', minHeight: '20rem', objectFit: 'cover' }}>
-            <img className="card-img-top" title={product.descripcion} src={process.env.PUBLIC_URL + '/images/' + product.foto} alt={product.nombre} />
+          <img className="card-img-top" title={product.descripcion} src={process.env.PUBLIC_URL + '/images/' + product.foto} alt={product.nombre} style={{width: '100%', height: '200px'}} />
             <div className="card-body">
               <h5 className="card-title">{product.nombre}</h5>
               <p className="card-text">Precio: {product.precio.toFixed(2)} €</p>
