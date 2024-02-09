@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import App from "./App";
 import Admin from "./Admin";
+import Pensando from './Pensando'; // Import the Pensando component
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +14,8 @@ function LoginPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [isRegistering, setIsRegistering] = useState(false); // Add this line
+  const [showPensando, setShowPensando] = useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +49,10 @@ function LoginPage() {
 
   };
 
+  if (showPensando) {
+    return <Pensando />;
+  }
+
   const handleRegister = () => {
     setIsRegistering(true); // Set isRegistering to true when the button is clicked
   };
@@ -62,7 +69,7 @@ function LoginPage() {
   } else {
     return (
       <div className="App">
-          <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" onClick={() => setShowPensando(true)} />
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'beige' }}>
               
               <form onSubmit={handleSubmit} style={{backgroundColor: 'white'}}>

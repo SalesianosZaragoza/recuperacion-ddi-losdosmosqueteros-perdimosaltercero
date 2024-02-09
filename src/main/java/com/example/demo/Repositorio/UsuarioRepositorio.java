@@ -35,9 +35,9 @@ public class UsuarioRepositorio{
         return listaUsuarios.get(0);
     }
 
-    public Usuario getUsuarioPorNombre(String nombre){
+    public Usuario getUsuarioPorNombre(String username){
         String query = "SELECT * FROM usuario WHERE username like ?;";
-        List<Usuario> listaUsuarios = jdbcTemplate.query(query, new UsuarioRowMapper(), nombre);
+        List<Usuario> listaUsuarios = jdbcTemplate.query(query, new UsuarioRowMapper(), username);
         System.out.println(listaUsuarios.get(0).getTipo_usuario());
         return listaUsuarios.get(0);
     }

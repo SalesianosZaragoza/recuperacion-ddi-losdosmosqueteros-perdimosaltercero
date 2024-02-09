@@ -2,8 +2,10 @@ package com.example.demo.Controladores;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Modelos.*;
@@ -28,6 +30,10 @@ public class UsuarioController {
         return "eliminarUsuario";
     }
 
-    
+    @GetMapping(value = "/comprobarUsuario", consumes = {"application/json"})
+    public String comprobarUsuario(@RequestParam Usuario usuario ){
+        usuarioRepositorio.getUsuarioPorNombre(usuario.getUsername());
+        return "comprobarUsuario";
+    }
 
 }
