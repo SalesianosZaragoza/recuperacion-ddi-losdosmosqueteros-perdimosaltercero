@@ -194,7 +194,7 @@ useEffect(() => {
         })
         .then(data => {
             console.log('Product deleted', data);
-          // Redirect to LoginPage
+            alert("Producto borrado correctamente.");
     
         })
         .catch(error => {
@@ -227,13 +227,45 @@ useEffect(() => {
           })
           .then(data => {
               console.log('Pedido deleted', data);
-            // Redirect to LoginPage
+              alert("Pedido borrado correctamente.");
       
           })
           .catch(error => {
               console.error('There was a problem with the fetch operation:', error);
           });
           };
+
+        const deleteUser = event => {
+            event.preventDefault();
+          
+            const userToDelete = {
+              cod: event.target.value
+            };
+          
+            // Send POST request to /deleteUser
+            fetch('./eliminarUsuario', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(userToDelete),
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+          
+              return response.text();
+            })
+            .then(data => {
+              console.log('User deleted', data);
+              alert("Usuario borrado correctamente.");
+            })
+            .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+            });
+          };
+
 
 return (
     <div style={{backgroundColor: 'beige'}}>
@@ -492,16 +524,19 @@ return (
         <hr />
         <h1>Lista de usuarios</h1>
         {sortedUsuarios.map((usuario, index) => {
-            
           const title = index === 0 || usuario.tipo_usuario !== sortedUsuarios[index - 1].tipo_usuario
-          ? <h2 style={{ marginBottom: '50px' }}>{tiposUsuario[usuario.tipo_usuario]}</h2>
-          : null;
+            ? <h2 style={{ marginBottom: '50px' }}>{tiposUsuario[usuario.tipo_usuario]}</h2>
+            : null;
+
           return (
             <div key={usuario.cod} style={{ marginBottom: '20px' }}>
               {title}
               <div className="card" style={{width: "18rem"}}>
-                <div className="card-body">
+                <div className="card-body" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h5 className="card-title">{usuario.username}</h5>
+                  {usuario.tipo_usuario === 2 && (
+                    <button value={usuario.cod} class="btn btn-danger" onClick={deleteUser}>Eliminar Usuario</button>
+                  )}
                 </div>
               </div>
             </div>

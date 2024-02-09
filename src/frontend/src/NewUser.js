@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from './LoginPage';
 
 import './App.css';
@@ -6,6 +6,17 @@ import './App.css';
 function NewUser() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [usuarios, setUsuarios] = useState([]);
+
+    useEffect(() => {
+        fetch('/usuarios')
+            .then(response => response.json())
+            .then(data => {
+            const usuarios = data.map(usuario => ({ ...usuario}));
+            setUsuarios(usuarios);
+            });
+        }, []);
+
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -16,7 +27,14 @@ function NewUser() {
             pwd: password,
             tipo_usuario: 2
         };
-        
+
+        // Check if username already exists
+        const usernameExists = usuarios.some(usuario => usuario.username === user.username);
+
+        if (usernameExists) {
+            alert('Username already exists');
+            return;
+        }
         // Send POST request to /insertarUsuario
         fetch('./insertarUsuario', {
             method: 'POST',
@@ -36,7 +54,8 @@ function NewUser() {
             console.log('User created', data);
           // Redirect to LoginPage
         
-            return <LoginPage />;
+            alert("Usuario creado correctamente.");
+            window.location.reload();
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -63,10 +82,7 @@ function NewUser() {
             </label>
             <br />
             <br />
-            <input type="submit" class="btn btn-success" value="Registrar usuario" onClick={() => {
-                alert("Usuario creado correctamente.");
-            window.location.reload();
-            }}/>
+            <input type="submit" class="btn btn-success" value="Registrar usuario"/>
         </form>
     </div>
     );
