@@ -68,23 +68,45 @@ function LoginPage() {
     return <NewUser />; // Render NewUser component if isRegistering is true
   } else {
     return (
-      <div className="App">
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh'
+      }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          backgroundColor: '#D80032',
+          width: '100%',
+          height: '106px'
+        }}>
+          <h2 style={{ color: 'white' }}>Inicio de sesión</h2>
+        </div>
         <img src={logo} className="App-logo" alt="logo" onClick={() => setShowPensando(true)} />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'beige' }}>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center',  
+              backgroundColor: '#EDF2F4',
+              flex: 1}}>
               
-              <form onSubmit={handleSubmit} style={{backgroundColor: 'white'}}>
-              <label><h1>Iniciar sesión</h1></label>
+              <form onSubmit={handleSubmit} style={{backgroundColor: '#EDF2F4', padding: '80px', margin: '80px'}}>
               <br/>
-                <label>
-                  Usuario:
-                  <br/>
-                  <input
-                    type="text"
-                    value={username}
-                    placeholder="Usuario"
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </label>
+              <div style={{ textAlign: 'left' }}>
+              <label>
+                Usuario:
+                <br/>
+                <input
+                  type="text"
+                  value={username}
+                  placeholder="Usuario"
+                  onChange={(e) => setUsername(e.target.value)}
+                  style={{ backgroundColor: '#8B2635', color: 'white', width: '400px', height: '50px'}}
+                  className="white-placeholder"
+                />
+              </label>
                 <br/>
                 <br/>
                 <label>
@@ -95,21 +117,33 @@ function LoginPage() {
                     value={pwd}
                     placeholder="Contraseña"
                     onChange={(e) => setPwd(e.target.value)}
+                    style={{ backgroundColor: '#8B2635', color: 'white', width: '400px' , height: '50px'}}
+                    className="white-placeholder"
                   />
-                </label>
+              </label>
+              </div>
                 <br/>
                 <br/>
-                <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
-                <br/>
-                <br/>
-                <input type="button" class="btn btn-success" value="Registrarse" onClick={handleRegister} />
+                <input type="submit" class="btn btn-primary" value="Iniciar sesión" style={{ marginLeft: '25px', marginRight: '75px', padding: '10px 20px', fontSize: '18px', borderRadius: '5px' }}/>
+                <input type="button" class="btn btn-success" value="Registrarse" onClick={handleRegister} style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '5px' }}/>
               </form>
               <br/>
+            </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              backgroundColor: '#D80032',
+              width: '100%',
+              height: '50px'
+            }}>
+              <h4 style={{ color: 'white' }}>© 2024 - Carlos Ventura y Alejandro Tesan</h4>
             </div>
             <div id="salesianoszgz" style={{ position: 'fixed', top: '0px', left: '0px' }}>
               <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
                 <button id="salesianosButton">
-                  <img src="images/salesianoszgz.jpg" alt="Salesianos"/>
+                  <img src="images/salesianoszgz.jpg" alt="Salesianos" style={{ width: '300px', height: '100px' }} />
                 </button>
               </a>
             </div>

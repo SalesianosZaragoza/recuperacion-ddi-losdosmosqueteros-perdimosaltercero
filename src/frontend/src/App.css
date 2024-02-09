@@ -5,7 +5,7 @@
 .App-logo {
   height: 10vmin; /* Adjust this to change the size of the logo */
   position: absolute;
-  top: 30px;
+  top: 5px;
   right: 30px;
 }
 
@@ -47,7 +47,7 @@
   100% { content: ""; }
 }
 
-h2::after {
+#Puntos::after {
   content: "";
   animation: loadingDots 5s infinite;
 }
@@ -65,4 +65,8 @@ h2::after {
   .App-logo2 {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+input.white-placeholder::placeholder {
+  color: white !important;
 }

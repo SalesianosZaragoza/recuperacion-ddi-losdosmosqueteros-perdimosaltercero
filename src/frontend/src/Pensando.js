@@ -9,7 +9,7 @@ function Pensando() {
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo2" alt="logo" />
-                <h2 style={{ color: 'white', fontSize: '2em', position: 'fixed', top: '60%', left: '25%' }}>Pensando en la siguiente aplicación</h2>
+                <h2 id="Puntos"style={{ color: 'white', fontSize: '2em', position: 'fixed', top: '60%', left: '25%' }}>Pensando en la siguiente aplicación</h2>
             </header>
         </div>
     );
