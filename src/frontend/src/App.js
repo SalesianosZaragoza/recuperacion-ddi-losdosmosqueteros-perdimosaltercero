@@ -156,7 +156,7 @@ useEffect(() => {
       <div id="salesianoszgz" style={{ position: 'fixed', top: '0px', left: '0px' }}>
         <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
           <button id="salesianosButton">
-            <img src="images/salesianoszgz.jpg" alt="Salesianos"/>
+            <img src="images/salesianoszgz.jpg" alt="Salesianos" style={{ width: '300px', height: '100px' }} />
           </button>
         </a>
       </div>
