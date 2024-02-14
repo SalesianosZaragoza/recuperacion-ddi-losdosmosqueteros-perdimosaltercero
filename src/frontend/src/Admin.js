@@ -131,6 +131,7 @@ useEffect(() => {
     })
     .then(data => {
         console.log('Product created', data);
+        alert("Producto creado correctamente");
       // Redirect to LoginPage
 
     })
@@ -169,6 +170,7 @@ useEffect(() => {
       })
       .then(data => {
           console.log('Product modified', data);
+          alert("Producto modificado correctamente");
         // Redirect to LoginPage
   
       })
@@ -299,6 +301,7 @@ return (
             placeholder='Precio del producto'
             min="0.01"
             step="0.01"
+            max="999"
             onKeyPress={event => {
               const inputValue = event.target.value;
               if (
@@ -325,6 +328,7 @@ return (
           id="nuevaCantidad" 
           placeholder='Cantidad del producto'
           min="0"
+          max="99999"
           onKeyPress={event => {
             if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
@@ -413,6 +417,7 @@ return (
                       placeholder='Precio del producto'
                       min="0.01"
                       step="0.01"
+                      max="999"
                       value={modPrecio}
                       onKeyPress={event => {
                         const inputValue = event.target.value;
@@ -444,6 +449,7 @@ return (
                     required
                     value={modCantidad}
                     min="0"
+                    max="99999"
                     onKeyPress={event => {
                       if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}

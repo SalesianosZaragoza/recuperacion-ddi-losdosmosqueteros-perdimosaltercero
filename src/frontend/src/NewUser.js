@@ -20,6 +20,12 @@ function NewUser() {
 
     const handleSubmit = event => {
         event.preventDefault();
+
+        // Validate username
+        if (username.trim() === '' || username.includes(' ')) {
+            alert('Invalid username. Username must contain at least one character and cannot contain spaces.');
+            return;
+        }
         
         // Create user object
         const user = {
@@ -35,6 +41,8 @@ function NewUser() {
             alert('Username already exists');
             return;
         }
+
+
         // Send POST request to /insertarUsuario
         fetch('./insertarUsuario', {
             method: 'POST',
@@ -61,7 +69,7 @@ function NewUser() {
             console.error('There was a problem with the fetch operation:', error);
             return <LoginPage />;
         });
-        };
+    };
 
     return (
         <div style={{

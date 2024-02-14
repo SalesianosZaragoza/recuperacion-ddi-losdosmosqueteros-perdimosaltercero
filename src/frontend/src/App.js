@@ -148,7 +148,7 @@ useEffect(() => {
                 id={`cantidad${product.cod}`}
                 placeholder='Cantidad'
                 min="0"
-                max="100"
+                max="999"
                 onKeyPress={event => {
                   const inputValue = event.target.value;
                   if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (event.key === '.') || (event.key === ',') || (inputValue === '' && event.key === '0') || inputValue.length >= 3) event.preventDefault();
