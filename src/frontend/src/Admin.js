@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import './App.css';
 
 function Admin() {
 const [productos, setProductos] = useState([]);
@@ -67,6 +68,13 @@ const handleSelectChange4 = (event) => {
 };
 
 useEffect(() => {
+  document.documentElement.style.backgroundColor = '#25283D';
+  return () => {
+    document.documentElement.style.backgroundColor = null;
+  };
+}, []);
+
+useEffect(() => {
     fetch('/productos')
       .then(response => response.json())
       .then(data => {
@@ -123,6 +131,7 @@ useEffect(() => {
     })
     .then(data => {
         console.log('Product created', data);
+        alert("Producto creado correctamente");
       // Redirect to LoginPage
 
     })
@@ -161,6 +170,7 @@ useEffect(() => {
       })
       .then(data => {
           console.log('Product modified', data);
+          alert("Producto modificado correctamente");
         // Redirect to LoginPage
   
       })
@@ -268,7 +278,8 @@ useEffect(() => {
 
 
 return (
-    <div style={{backgroundColor: 'beige'}}>
+    <div className="Admin" style={{backgroundColor: '#25283D'}}>
+      <div style={{marginLeft: '20px'}}>
         <h1>Crear productos</h1>
         <form onSubmit={handleNuevoProducto}>
         <label>Nombre del producto:</label>
@@ -290,6 +301,7 @@ return (
             placeholder='Precio del producto'
             min="0.01"
             step="0.01"
+            max="999"
             onKeyPress={event => {
               const inputValue = event.target.value;
               if (
@@ -316,6 +328,7 @@ return (
           id="nuevaCantidad" 
           placeholder='Cantidad del producto'
           min="0"
+          max="99999"
           onKeyPress={event => {
             if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
           }}
@@ -404,6 +417,7 @@ return (
                       placeholder='Precio del producto'
                       min="0.01"
                       step="0.01"
+                      max="999"
                       value={modPrecio}
                       onKeyPress={event => {
                         const inputValue = event.target.value;
@@ -435,6 +449,7 @@ return (
                     required
                     value={modCantidad}
                     min="0"
+                    max="99999"
                     onKeyPress={event => {
                       if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E')) event.preventDefault();
                     }}
@@ -543,6 +558,7 @@ return (
           );
         })}
         <hr />
+      </div>
     </div>
   );
 }

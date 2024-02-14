@@ -49,4 +49,4 @@ VALUES ('BaconQueso', 3.5, 34, 1, 'Un bocadillo de bacon y queso', 'baconqueso.j
 INSERT INTO usuario (username, pwd, tipousuario) VALUES ('admin', 'admin', 1);
 INSERT INTO usuario (username, pwd, tipousuario) VALUES ('JMVT', 'JMVT', 2);
 INSERT INTO usuario (username, pwd, tipousuario) VALUES ('CVT', 'CVT', 2);
-INSERT INTO pedidos (username, productos, producto_cantidad, total) VALUES ('hola', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15', '4', 100);
+INSERT INTO pedidos (username, productos, producto_cantidad, total) VALUES ('hola', 'CocaCola', '3', 4);
