@@ -178,8 +178,8 @@ useEffect(() => {
         <img src="images/carrito.jpg" alt="Pagar" style={{ width: '135px', height: '135px' }} />
       </button>
       <br/>
-      <p> Total: {totalPrecio} €</p>
-      <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
+      <p> Total: {totalPrecio || 0} €</p>
+      <p>Artículos seleccionados: {productos.reduce((total, product) => total + Number(product.cantidad) || 0, 0)}</p>
     </div>
       <div id="salesianoszgz" style={{position:'absolute', top: '0px', left: '0px' }}>
         <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
