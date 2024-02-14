@@ -70,3 +70,8 @@
 input.white-placeholder::placeholder {
   color: white !important;
 }
+
+.Admin {
+  color: white;
+  font-weight: bold;
+}

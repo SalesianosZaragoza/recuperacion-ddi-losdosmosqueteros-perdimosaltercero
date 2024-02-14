@@ -104,13 +104,28 @@ useEffect(() => {
   }, [productos]);
 
   return (
-    <div style={{backgroundColor: 'beige'}}>
-      <div style={{ textAlign: 'center' }}>
-        <h1>¡Hola, {username}!</h1>
-        <h2>Selecciona los productos que deseas comprar</h2>
-      </div>
-      <div className="container">
-  <div className="row">
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100vh'
+    }}>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      backgroundColor: '#D80032',
+      width: '83%',
+      minHeight: '106px',
+      borderRadius: '10px'
+    }}>
+      <h2 style={{color: 'white', marginBottom: '10px'}}>¡Hola, {username}!</h2>
+      <h4 style={{color: 'white'}}>Selecciona los productos que deseas comprar</h4>
+    </div>
+
+  <div className="container">
+    <div className="row">
     {sortedProductos.flatMap((product, index) => {
       // If it's the first product or if the categoria has changed, add a title
       const title = index === 0 || product.categoria !== sortedProductos[index - 1].categoria
@@ -133,9 +148,10 @@ useEffect(() => {
                 id={`cantidad${product.cod}`}
                 placeholder='Cantidad'
                 min="0"
+                max="100"
                 onKeyPress={event => {
                   const inputValue = event.target.value;
-                  if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (event.key === '.') || (event.key === ',') || (inputValue === '' && event.key === '0')) event.preventDefault();
+                  if ((event.key === '-') || (event.key === '+') || (event.key === 'e') || (event.key=== 'E') || (event.key === '.') || (event.key === ',') || (inputValue === '' && event.key === '0') || inputValue.length >= 3) event.preventDefault();
                 }}
                 onChange={event => handleQuantityChange(product.cod, event)}
               />
@@ -145,15 +161,27 @@ useEffect(() => {
       ];
     })}
   </div>
-</div>
-      <div id="zonaCompra" style={{  position: 'fixed', top: '10px', right: '10px'}}>
-        <button id="pagarButton" onClick={handlePagar}>
-          <img src="images/carrito.jpg" alt="Pagar" style={{ width: '135px', height: '135px' }} />
-        </button>
-        <p> Total: {totalPrecio} €</p>
-        <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
-      </div>
-      <div id="salesianoszgz" style={{ position: 'fixed', top: '0px', left: '0px' }}>
+  </div>
+      <div id="zonaCompra" style={{  
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'fixed', 
+      top: '0px', 
+      right: '0px', 
+      border: '2px solid #462255',
+      width:'14%', 
+      borderRadius: '10px'
+    }}>
+      <button id="pagarButton" onClick={handlePagar}>
+        <img src="images/carrito.jpg" alt="Pagar" style={{ width: '135px', height: '135px' }} />
+      </button>
+      <br/>
+      <p> Total: {totalPrecio} €</p>
+      <p>Artículos seleccionados: {productos.reduce((total, product) => total + product.cantidad, 0)}</p>
+    </div>
+      <div id="salesianoszgz" style={{position:'absolute', top: '0px', left: '0px' }}>
         <a href="https://zaragoza.salesianos.edu/" target="_blank" rel="noopener noreferrer">
           <button id="salesianosButton">
             <img src="images/salesianoszgz.jpg" alt="Salesianos" style={{ width: '300px', height: '100px' }} />

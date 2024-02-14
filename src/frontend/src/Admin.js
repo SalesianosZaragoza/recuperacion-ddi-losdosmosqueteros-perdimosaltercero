@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import './App.css';
 
 function Admin() {
 const [productos, setProductos] = useState([]);
@@ -65,6 +66,13 @@ const handleSelectChange2 = (event) => {
 const handleSelectChange4 = (event) => {
   setSelectedPedido2(event.target.value);
 };
+
+useEffect(() => {
+  document.documentElement.style.backgroundColor = '#25283D';
+  return () => {
+    document.documentElement.style.backgroundColor = null;
+  };
+}, []);
 
 useEffect(() => {
     fetch('/productos')
@@ -268,7 +276,8 @@ useEffect(() => {
 
 
 return (
-    <div style={{backgroundColor: 'beige'}}>
+    <div className="Admin" style={{backgroundColor: '#25283D'}}>
+      <div style={{marginLeft: '20px'}}>
         <h1>Crear productos</h1>
         <form onSubmit={handleNuevoProducto}>
         <label>Nombre del producto:</label>
@@ -543,6 +552,7 @@ return (
           );
         })}
         <hr />
+      </div>
     </div>
   );
 }
