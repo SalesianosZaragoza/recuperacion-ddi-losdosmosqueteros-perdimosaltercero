@@ -100,14 +100,14 @@ function NewUser() {
                 <label>
                 Usuario:
                 <br />
-                <input type="text" value={username} placeholder='Usuario' onChange={e => setUsername(e.target.value)} style={{ backgroundColor: '#8B2635', color: 'white', width: '400px', height: '50px'}} className="white-placeholder"/>
+                <input type="text" value={username} placeholder='Usuario' onChange={e => setUsername(e.target.value)} maxLength={20} style={{ backgroundColor: '#8B2635', color: 'white', width: '400px', height: '50px'}} className="white-placeholder"/>
                 </label>
                 <br />
                 <br />
                 <label>
                 Contraseña:
                 <br />
-                <input type="password" value={password} placeholder='Contraseña' onChange={e => setPassword(e.target.value)} style={{ backgroundColor: '#8B2635', color: 'white', width: '400px' , height: '50px'}} className="white-placeholder"/>
+                <input type="password" value={password} placeholder='Contraseña' onChange={e => setPassword(e.target.value)} maxLength={20} style={{ backgroundColor: '#8B2635', color: 'white', width: '400px' , height: '50px'}} className="white-placeholder"/>
                 </label>
             </div>
                 <br />

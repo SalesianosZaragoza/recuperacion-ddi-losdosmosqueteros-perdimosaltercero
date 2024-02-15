@@ -289,6 +289,7 @@ return (
           id="nuevoNombre" 
           placeholder='Nombre del producto'
           onChange={e => setNuevoNombre(e.target.value)}
+          maxLength={20}
           required
           />
           <br/>
@@ -364,6 +365,7 @@ return (
           id="nuevaDescripcion" 
           placeholder='Descripción del producto'
           onChange={e => setNuevaDescripcion(e.target.value)}
+          maxLength={20}
           required
           />
           <br/>
@@ -405,6 +407,7 @@ return (
                     placeholder='Nombre del producto'
                     value={modNombre}
                     onChange={e => setModNombre(e.target.value)}
+                    maxLength={20}
                     required
                     />
                     <br/>
@@ -484,6 +487,7 @@ return (
                     required
                     value={modDescripcion}
                     onChange={e => setModDescripcion(e.target.value)}
+                    maxLength={20}
                     />
                     <br/>
                     <br/>
