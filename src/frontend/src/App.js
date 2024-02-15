@@ -75,6 +75,7 @@ useEffect(() => {
       alert("Pedido realizado correctamente." + "Precio total: " + totalPrecio + " €.");
       setProductos(productos.map(producto => ({ ...producto, cantidad: 0 })));
       setTotalPrecio(0);
+      window.location.reload();
 
     })
     .catch(error => {
