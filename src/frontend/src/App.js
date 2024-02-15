@@ -50,10 +50,17 @@ useEffect(() => {
       .filter(producto => producto.cantidad > 0)
       .map(producto => producto.cantidad);
 
+
+      if (isNaN(totalPrecio)) {
+        alert('Invalid total price. Please enter a valid quantity.');
+        return;
+      }
+
       if (totalPrecio === 0) {
         alert('No products selected. Please select a product before proceeding to payment.');
         return;
       }
+      
       
     fetch('./insertarPedido', {
       method: 'POST',
@@ -86,13 +93,13 @@ useEffect(() => {
   
   
   const handleQuantityChange = (id, event) => {
-    const quantity = parseFloat(event.target.value); // Change this line
+    const quantity = event.target.value ? parseFloat(event.target.value) : 0;
     if (quantity < 0) {
       return;
     }
     setProductos(productos => productos.map(producto => {
       if (producto.cod === id) {
-        return { ...producto, cantidad: quantity }; // And this line
+        return { ...producto, cantidad: quantity };
       } else {
         return producto;
       }
@@ -100,7 +107,10 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    const newTotal = productos.reduce((sum, producto) => sum + producto.cantidad * producto.precio, 0);
+    const newTotal = productos.reduce((sum, producto) => {
+      const cantidad = Number(producto.cantidad) || 0;
+      return sum + cantidad * producto.precio;
+    }, 0);
     setTotalPrecio(parseFloat(newTotal.toFixed(2)));
   }, [productos]);
 
