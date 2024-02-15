@@ -377,6 +377,7 @@ return (
           id="nuevaFoto" 
           placeholder='Foto del producto (URL)'
           onChange={e => setNuevaFoto(e.target.value)}
+          maxLength={50}
           />
           <br/>
           <br/>
@@ -500,6 +501,7 @@ return (
                     required
                     value={modFoto}
                     onChange={e => setModFoto(e.target.value)}
+                    maxLength={50}
                     />
                     <br/>
                     <br/>
