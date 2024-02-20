@@ -525,7 +525,7 @@ return (
         <hr />
         <h1>Lista de pedidos</h1>
         {pedidos.map(pedido => (
-                <p>Usuario: {pedido.username} Productos: {pedido.productos} Cantidad Productos: {pedido.producto_cantidad} Importe: {pedido.total}€</p>
+                <p>El usuario {pedido.username} ha realizado el pedido ({pedido.cod}), productos pedidos: {pedido.productos} cantidad : {pedido.producto_cantidad} Precio final: {pedido.total}€</p>
             ))}
         <hr />
         <h1>Eliminar pedido</h1>
