@@ -43,7 +43,7 @@ VALUES ('BaconQueso', 3.5, 34, 1, 'Un bocadillo de bacon y queso', 'baconqueso.j
         ('Nestea', 1.1, 31, 5, 'El favorito de un Alejandro Tesan, nunca le dice no a un Nestea', 'nestea.jpg'),
         ('ZumoSabores', 1.1, 31, 5, '¿Sabores?, ¿Que sabores? Eso lo tendras que descubrir tu', 'zumosabores.jpg'),
         ('Mosto', 1.1, 31, 5, 'Oye chaval, quiero un mosto ipso facto', 'mosto.jpg'),
-        ('CervezaSinAlcohol', 1.1, 31, 5, '¿Una cerveza? ¿En un colegio?, Vale que sea sin alcohol pero... creo que no la pediria, sobre todo si estan los de Infantil por la cafeteria', 'cerevezasinalcohol.jpg'),
+        ('CervezaSinAlcohol', 1.1, 31, 5, '¿Una cerveza? ¿En un colegio?, Vale que sea sin alcohol pero... creo que no la pediria, sobre todo si estan los de Infantil por la cafeteria', 'cervezasinalcohol.jpg'),
         ('FrutaTemporada', 1.1, 31, 6, 'Una fruta de temporada, sea cual sea, yo la pediria', 'frutatemporada.jpg'),
         ('YogurMuesli', 1.1, 31, 6, 'El yogur favorito de Messi, el Muesli', 'yogurmuesli.jpg');
 INSERT INTO usuario (username, pwd, tipousuario) VALUES ('admin', 'admin', 1);
